@@ -2,6 +2,7 @@ package main
 
 import (
 	"etl-neoway-challenge/src"
+	"etl-neoway-challenge/src/database"
 	"etl-neoway-challenge/src/models"
 	"fmt"
 	"time"
@@ -10,6 +11,7 @@ import (
 func main() {
 
 	start := time.Now()
+	database.Migrate()
 
 	eChan := make(chan []string)
 	tChan := make(chan *models.Order)

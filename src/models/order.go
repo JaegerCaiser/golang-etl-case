@@ -2,10 +2,13 @@ package models
 
 import (
 	"time"
+
+	"github.com/jinzhu/gorm"
 )
 
 //Order - Modelo de persistência
 type Order struct {
+	gorm.Model
 	Cpf                string
 	Private            int
 	Incompleto         int
