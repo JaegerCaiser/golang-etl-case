@@ -2,7 +2,9 @@
 Caso de uso de etl com go, gin e postgres
 
 ## Como instalar
-`$ git clone git@github.com:JaegerCaiser/golang-etl-case.git`
+`$ git clone git@github.com:JaegerCaiser/golang-etl-case.git` (ssh)
+
+`$ git clone https://github.com/JaegerCaiser/golang-etl-case.git` (https)
 
 `$ cd golang-etl-case`
 
