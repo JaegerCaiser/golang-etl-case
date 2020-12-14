@@ -1,9 +1,11 @@
-package src
+package services
 
 import (
 	"etl-neoway-challenge/src/models"
 	"etl-neoway-challenge/src/utils"
 	"strconv"
+
+	"github.com/Nhanderu/brdoc"
 )
 
 //Transform - Transforma valores do array de string para struct
@@ -11,6 +13,10 @@ func Transform(eChan chan []string, tChan chan *models.Order) {
 	for record := range eChan {
 		o := new(models.Order)
 		o.Cpf = utils.ConvertOnlyNumber(record[0])
+
+		//ValidaCPF
+		o.DocucmentoValido = brdoc.IsCPF(o.Cpf)
+
 		o.Private, _ = strconv.Atoi(record[1])
 		o.Incompleto, _ = strconv.Atoi(record[2])
 		o.DataUltimaCompra = utils.ConvertStringToDate(record[3])

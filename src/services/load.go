@@ -1,4 +1,4 @@
-package src
+package services
 
 import (
 	"etl-neoway-challenge/src/database"

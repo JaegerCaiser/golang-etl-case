@@ -14,11 +14,11 @@ import (
 )
 
 const (
-	host     = "localhost"
+	host     = "postgres"
 	port     = 5432
 	user     = "postgres"
-	password = "docker"
-	dbname   = "etl-golang"
+	password = "admin123"
+	dbname   = "neoway_challenge"
 )
 
 var dbInstance *gorm.DB
