@@ -1,9 +1,8 @@
 package services
 
 import (
-	"etl-neoway-challenge/src/database"
+	"etl-neoway-challenge/src/daos/daos"
 	"etl-neoway-challenge/src/models"
-	"log"
 	"sync"
 )
 
@@ -19,13 +18,15 @@ func Load(tChan chan *models.Order, done chan bool) {
 			arrayOrders = append(arrayOrders, o)
 		} else {
 			wg.Add(1)
-			go func(o []*models.Order) {
-				tx := database.Connect().CreateInBatches(o, bufferSize)
-				log.Println(tx.RowsAffected, "Registros salvos com sucesso")
-				defer wg.Done()
-			}(arrayOrders)
+			go daos.SaveList(arrayOrders, &wg)
 			arrayOrders = make([]*models.Order, 0, bufferSize)
 		}
+	}
+
+	//Salvando os remanescentes
+	if len(arrayOrders) > 0 {
+		wg.Add(1)
+		go daos.SaveList(arrayOrders, &wg)
 	}
 
 	wg.Wait()
