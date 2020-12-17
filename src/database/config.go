@@ -17,8 +17,8 @@ const (
 	host     = "postgres"
 	port     = 5432
 	user     = "postgres"
-	password = "admin123"
-	dbname   = "neoway_challenge"
+	password = "docker"
+	dbname   = "golang-etl-case"
 )
 
 var dbInstance *gorm.DB
